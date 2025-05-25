@@ -1,0 +1,21 @@
+{
+  "name": "Laravel DevContainer",
+  "dockerComposeFile": [
+    "../docker-compose.yml"
+  ],
+  "service": "prototype-upd8-laravel",
+  "workspaceFolder": "/workspace",
+  "shutdownAction": "stopCompose",
+  "forwardPorts": [
+    8000
+  ],
+  "postCreateCommand": "composer install",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bmewburn.vscode-intelephense-client",
+        "felixfbecker.php-debug"
+      ]
+    }
+  }
+}

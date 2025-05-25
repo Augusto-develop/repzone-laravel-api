@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+    prototype-upd8-laravel:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - "8000:8000"
+        volumes:
+            - ./laravel-api:/var/www:cached
+        networks:
+            - personwallet-network
+        extra_hosts:
+            - 'host.docker.internal:host-gateway'        
+
+networks:
+    personwallet-network:
+        external: true
