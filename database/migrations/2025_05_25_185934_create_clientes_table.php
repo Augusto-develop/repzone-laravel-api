@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('clientes', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('cpf')->unique();
+            $table->string('cpf', 11)->unique();
             $table->string('nome', 150);
             $table->date('datanasc');
             $table->enum('sexo', ['M', 'F']);

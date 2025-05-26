@@ -13,6 +13,7 @@ class ClienteSeeder extends Seeder
      */
     public function run(): void
     {
+        Cliente::truncate();
         Cliente::factory()->count(50)->create();
     }
 }

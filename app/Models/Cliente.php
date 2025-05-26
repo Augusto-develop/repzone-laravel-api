@@ -11,8 +11,11 @@ class Cliente extends Model
     use HasFactory;
 
     public $incrementing = false;
-
     protected $keyType = 'string';
+
+    protected $fillable = [
+        'cpf', 'nome', 'datanasc', 'sexo', 'endereco', 'estado', 'cidade',
+    ];
 
     protected static function boot()
     {
