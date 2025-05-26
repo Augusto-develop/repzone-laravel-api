@@ -4,7 +4,7 @@
     "../docker-compose.yml"
   ],
   "service": "prototype-upd8-laravel",
-  "workspaceFolder": "/workspace",
+  "workspaceFolder": "/workspaces/repzone-laravel-api",
   "shutdownAction": "stopCompose",
   "forwardPorts": [
     8000
