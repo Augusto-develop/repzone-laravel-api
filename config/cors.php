@@ -22,6 +22,7 @@ return [
     'allowed_origins' => [
         'http://localhost:3000',
         'http://localhost:3500',
+        'https://repzone-next-front.vercel.app'
     ],
 
     'allowed_origins_patterns' => [],
