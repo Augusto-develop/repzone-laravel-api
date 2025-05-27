@@ -3,7 +3,7 @@ services:
   prototype-upd8-laravel:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     ports:
       - "8000:8000"
     volumes:
@@ -13,7 +13,7 @@ services:
     networks:
       - personwallet-network
     extra_hosts:
-      - 'host.docker.internal:host-gateway'    
+      - 'host.docker.internal:host-gateway'
 
   dbrepzone:
     image: mysql:8.0

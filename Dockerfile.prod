@@ -19,8 +19,13 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Define o diretório de trabalho
 WORKDIR /var/www
 
+COPY composer.json composer.lock ./
+
 # Instala dependências do Laravel
 RUN composer install --optimize-autoloader --no-dev
+
+# Copia o resto do código
+COPY . .
 
 # Define permissões (pode ser ajustado conforme necessidade)
 RUN chown -R www-data:www-data /var/www \
