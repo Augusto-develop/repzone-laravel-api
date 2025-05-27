@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cliente;
-use Illuminate\Http\Request;
 use App\Http\Requests\Cliente\FilterRequest;
 use App\Http\Requests\Cliente\StoreRequest;
+use App\Models\Cliente;
 
 class ClienteController extends Controller
 {
@@ -14,7 +13,7 @@ class ClienteController extends Controller
      */
     public function index(FilterRequest $request)
     {
-        $clientes = Cliente::query();
+        $clientes = Cliente::with('cidade');
 
         if ($request->filled('cpf')) {
             $clientes->where('cpf', 'like', '%' . $request->cpf . '%');
@@ -33,11 +32,14 @@ class ClienteController extends Controller
         }
 
         if ($request->filled('estado')) {
-            $clientes->where('estado', $request->estado);
+            // Filtro pelo estado da tabela `cidades`
+            $clientes->whereHas('cidade', function ($query) use ($request) {
+                $query->where('estado', $request->estado);
+            });
         }
 
-        if ($request->filled('cidade')) {            
-            $clientes->where('cidade', 'like', '%' . $request->cidade . '%');
+        if ($request->filled('cidade')) {
+            $clientes->where('cidade_id', $request->cidade);
         }
 
         return $clientes->get();
@@ -58,6 +60,7 @@ class ClienteController extends Controller
      */
     public function show(string $id)
     {
+        $cliente = Cliente::findOrFail($id);
         return $cliente;
     }
 
@@ -78,6 +81,7 @@ class ClienteController extends Controller
      */
     public function destroy(string $id)
     {
+        $cliente = Cliente::findOrFail($id);
         $cliente->delete();
         return response()->noContent();
     }

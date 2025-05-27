@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Cliente;
+namespace App\Http\Requests\Cidade;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
@@ -24,10 +24,6 @@ class FilterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'cpf' => ['nullable', 'string', 'max:11'],
-            'nome' => ['nullable', 'string', 'max:150'],
-            'datanasc' => ['nullable', 'date'],
-            'sexo' => ['nullable', 'in:M,F'],
             'estado' => ['nullable', 'string', 'size:2'],
             'cidade' => ['nullable', 'string', 'max:100']
         ];

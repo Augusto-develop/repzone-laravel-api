@@ -14,7 +14,7 @@ class Cliente extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
-        'cpf', 'nome', 'datanasc', 'sexo', 'endereco', 'estado', 'cidade',
+        'cpf', 'nome', 'datanasc', 'sexo', 'endereco', 'cidade_id',
     ];
 
     protected static function boot()
@@ -26,5 +26,10 @@ class Cliente extends Model
                 $model->{$model->getKeyName()} = (string) Str::uuid();
             }
         });
+    }
+
+    public function cidade()
+    {
+        return $this->belongsTo(Cidade::class, 'cidade_id', 'id');
     }
 }

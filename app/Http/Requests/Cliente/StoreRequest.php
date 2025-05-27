@@ -21,7 +21,7 @@ class StoreRequest extends FormRequest
      */
     public function rules(): array
     {
-        $clienteId = $this->route('cliente'); 
+        $clienteId = $this->route('cliente');
 
         return [
             'cpf' => [
@@ -34,8 +34,7 @@ class StoreRequest extends FormRequest
             'datanasc' => 'required|date',
             'sexo' => 'required|in:M,F',
             'endereco' => 'required|string|max:255',
-            'estado' => 'required|string|size:2',
-            'cidade' => 'required|string|max:100',
+            'cidade_id' => 'required|uuid|exists:cidades,id',
         ];
     }
 
@@ -53,10 +52,9 @@ class StoreRequest extends FormRequest
             'sexo.in' => 'O sexo deve ser "M" ou "F".',
             'endereco.required' => 'O endereço é obrigatório.',
             'endereco.max' => 'O endereço pode ter no máximo 255 caracteres.',
-            'estado.required' => 'O estado é obrigatório.',
-            'estado.size' => 'O estado deve ter exatamente 2 caracteres.',
-            'cidade.required' => 'A cidade é obrigatória.',
-            'cidade.max' => 'A cidade pode ter no máximo 100 caracteres.',
+            'cidade_id.required' => 'A cidade é obrigatória.',
+            'cidade_id.uuid' => 'O ID da cidade deve ser um UUID válido.',
+            'cidade_id.exists' => 'A cidade selecionada não existe.',
         ];
     }
 }

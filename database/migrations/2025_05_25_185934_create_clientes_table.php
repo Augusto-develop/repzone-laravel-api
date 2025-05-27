@@ -18,9 +18,10 @@ return new class extends Migration
             $table->date('datanasc');
             $table->enum('sexo', ['M', 'F']);
             $table->string('endereco');
-            $table->string('estado', 2);
-            $table->string('cidade', 100);
+            $table->uuid('cidade_id');
             $table->timestamps();
+            
+            $table->foreign('cidade_id')->references('id')->on('cidades')->onDelete('restrict');
         });
     }
 
