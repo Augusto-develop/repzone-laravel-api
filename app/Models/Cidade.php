@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 class Cidade extends Model
@@ -11,7 +11,7 @@ class Cidade extends Model
     use HasFactory;
 
     protected $table = 'cidades';
-    
+
     public $incrementing = false;
     protected $keyType = 'string';
 
@@ -31,5 +31,10 @@ class Cidade extends Model
     public function clientes()
     {
         return $this->hasMany(Cliente::class, 'cidade_id', 'id');
+    }
+
+    public function representantes()
+    {
+        return $this->belongsToMany(Representante::class, 'cidade_representante');
     }
 }

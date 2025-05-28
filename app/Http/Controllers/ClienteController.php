@@ -73,6 +73,8 @@ class ClienteController extends Controller
 
         $cliente->update($request->validated());
 
+        $cliente->load('cidade');
+
         return response()->json($cliente);
     }
 

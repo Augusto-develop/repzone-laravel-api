@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
-        // User::truncate();
+        User::truncate();
         User::factory()->create([
             'name' => 'Dev User',
             'email' => 'dev@email.com',
@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CidadeSeeder::class,
             ClienteSeeder::class,
+            RepresentanteSeeder::class,
         ]);
     }
 }
